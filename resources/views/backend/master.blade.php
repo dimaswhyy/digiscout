@@ -41,6 +41,9 @@
     <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 
+    {{-- Text Editor --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
+
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="{{ asset('assets/backend/vendor/fonts/boxicons.css') }}" />
 
@@ -62,6 +65,27 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('assets/backend/js/config.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            // Menangkap elemen-elemen yang diperlukan
+            var passwordInput = $('#password');
+            var toggleButton = $('.form-password-toggle .input-group-text');
+
+            // Menangkap ikon mata di dalam tombol
+            var eyeIcon = toggleButton.find('i');
+
+            // Mengganti tipe input dari password ke text dan sebaliknya
+            toggleButton.click(function() {
+                if (passwordInput.attr('type') === 'password') {
+                    passwordInput.attr('type', 'text');
+                    eyeIcon.removeClass('bx-hide').addClass('bx-show');
+                } else {
+                    passwordInput.attr('type', 'password');
+                    eyeIcon.removeClass('bx-show').addClass('bx-hide');
+                }
+            });
+        });
+    </script>
     <style>
       .card {
         position: relative;
@@ -99,6 +123,8 @@
       }
 
     </style>
+
+    
 
   </head>
 
@@ -200,6 +226,14 @@
                 this.parentElement.classList.toggle('open');
             });
         });
+    </script>
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 
     {{-- Script List Data Table --}}
@@ -323,8 +357,12 @@
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'group_id',
-                        name: 'group_id'
+                        data: 'group_name',
+                        name: 'group_name'
+                    },
+                    {
+                        data: 'level_group_name',
+                        name: 'level_group_name'
                     },
                     {
                         data: 'sku_number',
@@ -337,6 +375,10 @@
                     {
                         data: 'sku_desc',
                         name: 'sku_desc'
+                    },
+                    {
+                        data: 'skor',
+                        name: 'skor'
                     },
                     {
                         data: 'action',
@@ -367,8 +409,8 @@
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'group_id',
-                        name: 'group_id'
+                        data: 'group_name',
+                        name: 'golongans.group_name'
                     },
                     {
                         data: 'level_group_name',
@@ -379,10 +421,51 @@
                         name: 'level_badge',
                         render: function(data, type, row) {
                             // Membangun URL gambar berdasarkan nama file
-                            var imageUrl = "{{ asset('/storage/app/public/level_badge/') }}" + '/' + data;
+                            var imageUrl = "{{ asset('/storage/app/public/level_badge/') }}" +
+                                '/' + data;
                             // Tampilkan badge dalam bentuk gambar
                             return '<img src="' + imageUrl + '" alt="Badge">';
                         }
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    },
+                ]
+            });
+
+            $(".searchName").keyup(function() {
+                table.draw();
+            });
+
+            // Datatable Admin Gudep
+            var table = $('.data-table-admin-gudep').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "{{ route('admin-gudeps.index') }}",
+                    data: function(d) {
+                        d.name = $('.searchName').val(),
+                            d.search = $('input[type="search"]').val()
+                    }
+                },
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'nta',
+                        name: 'nta'
+                    },
+                    {
+                        data: 'phone_number',
+                        name: 'phone_number'
                     },
                     {
                         data: 'action',
@@ -421,6 +504,122 @@
                     {
                         data: 'task_desc',
                         name: 'task_desc'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    },
+                ]
+            });
+
+            $(".searchName").keyup(function() {
+                table.draw();
+            });
+
+            // Datatable Profil Gugus Depan
+            var table = $('.data-table-profil-gudep').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "{{ route('profil-gudeps.index') }}",
+                    data: function(d) {
+                        d.name = $('.searchName').val(),
+                            d.search = $('input[type="search"]').val()
+                    }
+                },
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'school_name',
+                        name: 'school_name'
+                    },
+                    {
+                        data: 'address',
+                        name: 'address'
+                    },
+                    {
+                        data: 'information',
+                        name: 'information'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    },
+                ]
+            });
+
+            $(".searchName").keyup(function() {
+                table.draw();
+            });
+
+            // Datatable Golongan Gudep
+            var table = $('.data-table-golongan-gudep').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "{{ route('golongan-gudeps.index') }}",
+                    data: function(d) {
+                        d.name = $('.searchName').val(),
+                            d.search = $('input[type="search"]').val()
+                    }
+                },
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'group_name',
+                        name: 'golongans.group_name'
+                    },
+                    {
+                        data: 'information',
+                        name: 'information'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    },
+                ]
+            });
+
+            $(".searchName").keyup(function() {
+                table.draw();
+            });
+
+            // Datatable Pengurus Gudep
+            var table = $('.data-table-pengurus-gudep').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "{{ route('pengurus-gudeps.index') }}",
+                    data: function(d) {
+                        d.name = $('.searchName').val(),
+                            d.search = $('input[type="search"]').val()
+                    }
+                },
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'position_name',
+                        name: 'jabatans.position_name'
+                    },
+                    {
+                        data: 'information',
+                        name: 'information'
                     },
                     {
                         data: 'action',

@@ -182,7 +182,7 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-primary mr-2">Simpan Sekarang !</button>
+                        <button type="submit" class="btn btn-primary mr-2">Ubah Sekarang !</button>
                         <a href="{{ route('gudeps.index') }}" class="btn btn-light">Nanti Aja</a>
                     </form>
                 </div>

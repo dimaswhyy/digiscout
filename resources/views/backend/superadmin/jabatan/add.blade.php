@@ -1,7 +1,7 @@
 @extends('backend.master')
 @section('content')
     <h4 class="fw-bold py-3 mb-4">
-        <span class="text-muted fw-light">Dashboard / Data Gudep / Jabatan /</span> Tambah
+        <span class="text-muted fw-light">Dashboard / Jabatan /</span> Tambah
     </h4>
 
     <div class="row">
@@ -12,9 +12,6 @@
                     <form class="forms-sample" action="{{ route('jabatans.store') }}" method="POST" enctype="multipart/form-data">
 
                         @csrf
-
-                        <input type="text" class="form-control" name="gudep_id" value="1">
-                        <input type="text" class="form-control" name="admin_gudep_id" value="1">
 
                         <div class="form-group mb-3">
                             <label for="position_name">Nama Jabatan <span style="color: red;">*</span></label>
@@ -28,7 +25,7 @@
 
                         <div class="form-group mb-3">
                             <label for="task_desc">Tupoksi <span style="color: red;">*</span></label>
-                            <textarea name="task_desc" class="form-control" id="task_desc" rows="4"></textarea>
+                            <textarea name="task_desc" class="form-control" id="task_desk" rows="4"></textarea>
                             @error('task_desc')
                                 <div class="alert alert-danger mt-2">
                                     {{ $message }}

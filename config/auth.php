@@ -40,6 +40,21 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+
+        'account_super_admin' => [
+            'driver' => 'session',
+            'provider' => 'account_super_admins',
+        ],
+
+        'account_admin_gudep' => [
+            'driver' => 'session',
+            'provider' => 'account_admin_gudeps',
+        ]
     ],
 
     /*
@@ -63,6 +78,16 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'account_super_admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\AccountSuperAdmin::class,
+        ],
+
+        'account_admin_gudeps' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\AccountAdminGudep::class,
         ],
 
         // 'users' => [

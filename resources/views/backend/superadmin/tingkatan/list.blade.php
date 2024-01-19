@@ -16,7 +16,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Group ID</th>
+                            <th>Golongan</th>
                             <th>Tingkatan</th>
                             <th>Badge</th>
                             <th>Action</th>

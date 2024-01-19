@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('poin_s_k_u_s', function (Blueprint $table) {
-            $table->uuid('id')->primary()->unique();
-            $table->string('sku_number');
-            $table->string('sku_theme');
-            $table->text('sku_desc');
-            $table->string('group_id');
-            $table->timestamps();
+        Schema::table('jabatans', function (Blueprint $table) {
+            //
+            $table->dropColumn('gudep_id');
+            $table->dropColumn('admin_gudep_id');
         });
     }
 
@@ -26,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('poin_s_k_u_s');
+        Schema::table('jabatans', function (Blueprint $table) {
+            //
+        });
     }
 };

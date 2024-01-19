@@ -18,7 +18,7 @@ class GolonganGudep extends Model
      */
     protected $fillable = [
         'id',
-        'group_id',
+        'golongan_id',
         'information',
         'gudep_id',
         'admin_gudep_id'

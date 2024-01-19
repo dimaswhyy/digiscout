@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PoinSKU extends Model
+class PoinSku extends Model
 {
     use HasFactory;
 
@@ -21,6 +21,8 @@ class PoinSKU extends Model
         'sku_number',
         'sku_theme',
         'sku_desc',
-        'group_id'
+        'group_id',
+	    'level_group_id',
+	    'skor'
     ];
 }

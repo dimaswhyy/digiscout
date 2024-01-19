@@ -1,12 +1,19 @@
 <?php
 
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\SuperAdmin\GudepController;
 use App\Http\Controllers\Backend\Dashboard\DashboardController;
-use App\Http\Controllers\Backend\GugusDepan\JabatanController;
+use App\Http\Controllers\Backend\GugusDepan\GolonganGudepController;
+use App\Http\Controllers\Backend\GugusDepan\PengurusGudepController;
+use App\Http\Controllers\Backend\SuperAdmin\JabatanController;
+use App\Http\Controllers\Backend\GugusDepan\ProfileGudepController;
+use App\Http\Controllers\Backend\SuperAdmin\AdminGudepController;
 use App\Http\Controllers\Backend\SuperAdmin\GolonganController;
 use App\Http\Controllers\Backend\Superadmin\PoinSKUController;
 use App\Http\Controllers\Backend\Superadmin\TingkatanController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,16 +27,32 @@ use App\Http\Controllers\Backend\Superadmin\TingkatanController;
 */
 
 Route::get('/', function () {
-    return view('backend.dashboard.index');
+    return view('home');
 });
 
-route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-// Super Admin
-route::resource('/gudeps', GudepController::class);
-route::resource('/golongans', GolonganController::class);
-route::resource('/tingkatans', TingkatanController::class);
-route::resource('/poinskus', PoinSKUController::class);
+Auth::routes();
 
+Route::middleware('auth:user,account_super_admin,account_admin_gudep')->group(function () {
+    route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+});
 
-// Gugus Depan
-route::resource('/jabatans', JabatanController::class);
+Route::middleware('auth:account_super_admin')->group(function () {
+    // Super Admin
+    route::resource('/gudeps', GudepController::class);
+    route::resource('/admin-gudeps', AdminGudepController::class);
+    route::resource('/golongans', GolonganController::class);
+    route::resource('/tingkatans', TingkatanController::class);
+    route::resource('/poinskus', PoinSKUController::class);
+    route::resource('/jabatans', JabatanController::class);
+
+});
+
+Route::middleware('auth:account_admin_gudep')->group(function () {
+    // Gugus Depan
+    Route::resource('/golongan-gudeps', GolonganGudepController::class);
+    Route::resource('/profil-gudeps', ProfileGudepController::class);
+    Route::resource('/pengurus-gudeps', PengurusGudepController::class);
+
+});
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

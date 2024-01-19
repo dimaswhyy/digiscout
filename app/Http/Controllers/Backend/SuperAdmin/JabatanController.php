@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\GugusDepan;
+namespace App\Http\Controllers\Backend\SuperAdmin;
 
 use DataTables;
 use App\Models\Jabatan;
@@ -52,7 +52,7 @@ class JabatanController extends Controller
                     ->rawColumns(['action'])
                     ->make(true);
         }
-        return view('backend.gugusdepan.jabatan.list');
+        return view('backend.superadmin.jabatan.list');
     }
 
     /**
@@ -61,7 +61,7 @@ class JabatanController extends Controller
     public function create()
     {
         //
-        return view('backend.gugusdepan.jabatan.add');
+        return view('backend.superadmin.jabatan.add');
     }
 
     /**
@@ -72,17 +72,13 @@ class JabatanController extends Controller
         //
         $this->validate($request,[
             'position_name'     => 'required',
-            'task_desc'     => 'required',
-            'gudep_id'     => 'required',
-            'admin_gudep_id'     => 'required'
+            'task_desc'     => 'required'
         ]);
 
         $jabatans = Jabatan::create([
             'id'    => Str::uuid(),
             'position_name'     => $request->position_name,
-            'task_desc'     => $request->task_desc,
-            'gudep_id'     => $request->gudep_id,
-            'admin_gudep_id'     => $request->admin_gudep_id
+            'task_desc'     => $request->task_desc
         ]);
 
         if($jabatans){
@@ -109,7 +105,7 @@ class JabatanController extends Controller
     {
         //
         $jabatans = Jabatan::find($id);
-        return view('backend.gugusdepan.jabatan.edit', compact('jabatans'));
+        return view('backend.superadmin.jabatan.edit', compact('jabatans'));
     }
 
     /**
@@ -122,9 +118,7 @@ class JabatanController extends Controller
 
         $jabatans->update([
             'position_name'     => $request->position_name,
-            'task_desc'     => $request->task_desc,
-            'gudep_id'     => $request->gudep_id,
-            'admin_gudep_id'     => $request->admin_gudep_id
+            'task_desc'     => $request->task_desc
         ]);
 
         if($jabatans){

@@ -6,7 +6,7 @@
     <div class="card">
         <div class="card-header">
             <h5>Data Poin SKU</h5><br>
-            <a href="{{ route('golongans.create') }}"" class="btn btn-sm btn-primary">Tambah</a>
+            <a href="{{ route('poinskus.create') }}"" class="btn btn-sm btn-primary">Tambah</a>
             {{-- <a href="#" class="btn btn-sm btn-info">Import</a>
             <a href="#" class="btn btn-sm btn-success">Export</a> --}}
         </div>
@@ -17,9 +17,11 @@
                         <tr>
                             <th>No</th>
                             <th>Group ID</th>
+                            <th>Level Group ID</th>
                             <th>Poin</th>
                             <th>Tema</th>
                             <th>Deskripsi</th>
+                            <th>Skor</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>

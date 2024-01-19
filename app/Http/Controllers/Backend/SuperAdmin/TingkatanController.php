@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Backend\Superadmin;
 
 use DataTables;
+use App\Models\Golongan;
 use App\Models\Tingkatan;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Golongan;
+use Illuminate\Support\Facades\Storage;
 
 class TingkatanController extends Controller
 {
@@ -19,7 +20,7 @@ class TingkatanController extends Controller
         //
         if ($request->ajax()) {
 
-            $data = Tingkatan::latest()->get();
+            $data = Tingkatan::join('golongans', 'tingkatans.group_id', '=', 'golongans.id')->select('tingkatans.id','tingkatans.group_id','tingkatans.level_group_name', 'tingkatans.level_badge', 'golongans.group_name', 'tingkatans.*', 'tingkatans.created_at')->latest()->get();
 
             return datatables::of($data)
                     ->addIndexColumn()
@@ -121,7 +122,9 @@ class TingkatanController extends Controller
     {
         //
         $tingkatans = Tingkatan::find($id);
-        return view('backend.superadmin.tingkatan.edit');
+        $getGolongan = Golongan::all();
+        // dd($tingkatans);
+        return view('backend.superadmin.tingkatan.edit', compact('tingkatans', 'getGolongan'));
     }
 
     /**
@@ -130,6 +133,34 @@ class TingkatanController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $tingkatans = Tingkatan::findOrFail($id);
+
+        if($request->file("level_badge") == ""){
+
+            $tingkatans->update([
+                'group_id'     => $request->group_id,
+                'level_group_name'     => $request->level_group_name
+            ]);
+        }else{
+            Storage::disk('local')->delete('public/level_badge/'.$tingkatans->level_badge);
+
+            $levelBadge = $request->file('level_badge');
+            $levelBadge->storeAs('public/level_badge', $levelBadge->hashName());
+
+            $tingkatans->update([
+                'school_logo'     => $levelBadge->hashName(),
+                'group_id'     => $request->group_id,
+                'level_group_name'     => $request->level_group_name
+            ]);
+        }
+
+        if($tingkatans){
+            //redirect dengan pesan sukses
+            return redirect()->route('tingkatans.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        }else{
+            //redirect dengan pesan error
+            return redirect()->route('tingkatans.edit')->with(['error' => 'Data Gagal Disimpan!']);
+        }
     }
 
     /**
@@ -138,5 +169,18 @@ class TingkatanController extends Controller
     public function destroy(string $id)
     {
         //
+        $tingkatans = Tingkatan::findOrFail($id);
+        if($tingkatans->level_badge!="null"){
+            Storage::disk('local')->delete('public/level_badge'.$tingkatans->level_badge);
+        }
+        $tingkatans->delete();
+
+        if($tingkatans){
+            //redirect dengan pesan sukses
+        return redirect()->route('tingkatans.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        }else{
+            //redirect dengan pesan error
+        return redirect()->route('tingkatans.edit')->with(['error' => 'Data Gagal Dihapus!']);
+        }
     }
 }

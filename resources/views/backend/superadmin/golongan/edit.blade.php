@@ -14,6 +14,8 @@
                         @csrf
                         @method('PUT')
 
+                        <input name="role_id" class="form-control" id="role_id" value="2" hidden>
+
                         <div class="form-group mb-3">
                             <label for="group_name">Golongan <span style="color: red;">*</span></label>
                             <select name="group_name" class="form-control" id="group_name">
