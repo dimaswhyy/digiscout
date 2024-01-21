@@ -634,6 +634,42 @@
                 table.draw();
             });
 
+            // Datatable Penguji Gudep
+            var table = $('.data-table-penguji-gudep').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "{{ route('penguji-gudeps.index') }}",
+                    data: function(d) {
+                        d.name = $('.searchName').val(),
+                            d.search = $('input[type="search"]').val()
+                    }
+                },
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'name',
+                        name: 'pengurus_gudeps.name'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    },
+                ]
+            });
+
+            $(".searchName").keyup(function() {
+                table.draw();
+            });
+
         });
     </script>
     {{-- End Script List Data Table --}}

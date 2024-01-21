@@ -102,7 +102,7 @@
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="#" class="menu-link">
+                            <a href="{{ route('penguji-gudeps.index') }}" class="menu-link {{ Request::is('penguji-gudeps') ? 'active' : '' }}">
                                 <div data-i18n="Penguji">Penguji</div>
                             </a>
                         </li>

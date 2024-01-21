@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\SuperAdmin\GudepController;
 use App\Http\Controllers\Backend\Dashboard\DashboardController;
 use App\Http\Controllers\Backend\GugusDepan\GolonganGudepController;
+use App\Http\Controllers\Backend\GugusDepan\PengujiGudepController;
 use App\Http\Controllers\Backend\GugusDepan\PengurusGudepController;
 use App\Http\Controllers\Backend\SuperAdmin\JabatanController;
 use App\Http\Controllers\Backend\GugusDepan\ProfileGudepController;
@@ -52,7 +53,7 @@ Route::middleware('auth:account_admin_gudep')->group(function () {
     Route::resource('/golongan-gudeps', GolonganGudepController::class);
     Route::resource('/profil-gudeps', ProfileGudepController::class);
     Route::resource('/pengurus-gudeps', PengurusGudepController::class);
-
+    Route::resource('/penguji-gudeps', PengujiGudepController::class);
 });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
