@@ -124,7 +124,9 @@ class PengujiGudepController extends Controller
     public function edit(string $id)
     {
         //
-
+        $pengujigudeps = AccountPengujiGudep::find($id);
+        $getPengurus = PengurusGudep::all();
+        return view('backend.gugusdepan.penguji_gudep.edit', compact('getPengurus','pengujigudeps'));
     }
 
     /**
@@ -133,6 +135,33 @@ class PengujiGudepController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $pengujigudeps = AccountPengujiGudep::findorfail($id);
+
+        $this->validate($request, [
+            'gudep_id'     => 'required',
+            'admin_gudep_id'     => 'required',
+            'role_id'     => 'required',
+            'pengurus_id'   => 'required',
+            'email'     => 'required',
+            'password'     => 'required'
+        ]);
+
+        $pengujigudeps->update([
+            'gudep_id'     => $request->gudep_id,
+            'admin_gudep_id'     => $request->admin_gudep_id,
+            'role_id'     => $request->role_id,
+            'pengurus_id'     => $request->pengurus_id,
+            'email'     => $request->email,
+            'password'     => $request->password
+        ]);
+
+        if($pengujigudeps){
+            //redirect dengan pesan sukses
+            return redirect()->route('penguji-gudeps.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        }else{
+            //redirect dengan pesan error
+            return redirect()->route('penguji-gudeps.edit')->with(['error' => 'Data Gagal Disimpan!']);
+        }
     }
 
     /**
@@ -141,5 +170,15 @@ class PengujiGudepController extends Controller
     public function destroy(string $id)
     {
         //
+        $pengujigudeps = AccountPengujiGudep::findorfail($id);
+        $pengujigudeps->delete();
+        
+        if($pengujigudeps){
+            //redirect dengan pesan sukses
+            return redirect()->route('penguji-gudeps.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        }else{
+            //redirect dengan pesan error
+            return redirect()->route('penguji-gudeps.edit')->with(['error' => 'Data Gagal Disimpan!']);
+        }
     }
 }

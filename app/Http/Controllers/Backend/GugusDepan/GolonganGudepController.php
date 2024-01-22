@@ -127,6 +127,13 @@ class GolonganGudepController extends Controller
         //
         $golongangudeps = GolonganGudep::findorfail($id);
 
+        $this->validate($request, [
+            'gudep_id'     => 'required',
+            'admin_gudep_id'     => 'required',
+            'golongan_id'   => 'required',
+            'information'     => 'required'
+        ]);
+
         $golongangudeps->update([
             'golongan_id'     => $request->golongan_id,
             'information'     => $request->information,
