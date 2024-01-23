@@ -58,6 +58,9 @@
                                         @else
                                             <span>Anggota Pramuka</span>
                                         @endif
+                                    </small><br>
+                                    <small class="text-muted">
+                                        <span>{{ auth()->user()->id_gudep }}</span>
                                     </small>
                                 </div>
                             </div>
