@@ -97,7 +97,7 @@ class PengujiGudepController extends Controller
             'admin_gudep_id'     => $request->admin_gudep_id,
             'pengurus_id'     => $request->pengurus_id,
             'email'     => $request->email,
-            'password'     => $request->password,
+            'password'     => Hash::make($request->password),
             'role_id'     => $request->role_id
         ]);
 

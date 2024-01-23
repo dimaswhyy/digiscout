@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('peserta_didik_gudeps', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('gudep_id');
+            $table->string('gudep_id'); 
             $table->string('admin_gudep_id')->nullable();
             $table->longText('photo_profile')->nullable(); //Photo Profile User
             $table->longText('photo_full')->nullable(); //Photo Profile Full User
