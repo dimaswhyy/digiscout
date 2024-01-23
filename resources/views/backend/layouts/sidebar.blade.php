@@ -107,7 +107,7 @@
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="#" class="menu-link">
+                            <a href="{{ route('peserta-didik-gudeps.index') }}" class="menu-link {{ Request::is('peserta-didik-gudeps') ? 'active' : '' }}">
                                 <div data-i18n="Peserta Didik">Peserta Didik</div>
                             </a>
                         </li>

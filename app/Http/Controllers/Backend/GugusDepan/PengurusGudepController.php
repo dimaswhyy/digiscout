@@ -42,7 +42,7 @@ class PengurusGudepController extends Controller
                             }
 
                             return false;
-                        });
+                        });   
                     }
                 })
                 ->addColumn('action', function ($row) {
@@ -50,6 +50,7 @@ class PengurusGudepController extends Controller
                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                         <div class="dropdown-menu">
                           <a class="dropdown-item" href=' . route("pengurus-gudeps.edit", $row->id) . '><i class="bx bx-edit-alt me-1"></i> Ubah</a>
+                          <form action="' . route('pengurus-gudeps.destroy', $row->id) . '" method="POST">' . csrf_field() . method_field("DELETE") . '<button type="submit" class="btn btn-light" onclick="return confirm(\'Beneran nih mau di hapus ?\')"><i class="bx bx-trash me-1"></i> Hapus</button></form> 
                         </div>
                         </div>';
                     $btn = $dropBtn;

@@ -670,6 +670,46 @@
                 table.draw();
             });
 
+            // Datatable Peserta Didik Gudep
+            var table = $('.data-table-peserta-didik-gudep').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "{{ route('peserta-didik-gudeps.index') }}",
+                    data: function(d) {
+                        d.name = $('.searchName').val(),
+                            d.search = $('input[type="search"]').val()
+                    }
+                },
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
+                        data: 'information',
+                        name: 'information'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    },
+                ]
+            });
+
+            $(".searchName").keyup(function() {
+                table.draw();
+            });
+
         });
     </script>
     {{-- End Script List Data Table --}}
