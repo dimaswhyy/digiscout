@@ -1,13 +1,13 @@
 @extends('backend.master')
 @section('content')
     <h4 class="fw-bold py-3 mb-4">
-        <span class="text-muted fw-light">Dashboard / Data Gudep / Penguji Gugus Depan /</span> Tambah
+        <span class="text-muted fw-light">Dashboard / Data Gudep / Peserta Didik Gugus Depan /</span> Tambah
     </h4>
 
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-4">
-                <h5 class="card-header">Tambah Penguji Gugus Depan</h5>
+                <h5 class="card-header">Tambah Peserta Didik Gugus Depan</h5>
                 <div class="card-body">
                     <form class="forms-sample" action="{{ route('peserta-didik-gudeps.store') }}" method="POST"
                         enctype="multipart/form-data">
@@ -20,7 +20,7 @@
 
                         <div class="form-group mb-3">
                             <label for="name">Nama Siswa <span style="color: red;">*</span></label>
-                            <input type="name" name="name" class="form-control" id="name"
+                            <input type="type" name="name" class="form-control" id="name"
                                 placeholder="Dimas Wahyu Pratomo">
                             @error('name')
                                 <div class="alert alert-danger mt-2">

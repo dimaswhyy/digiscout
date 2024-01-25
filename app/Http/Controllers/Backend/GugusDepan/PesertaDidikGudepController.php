@@ -21,7 +21,7 @@ class PesertaDidikGudepController extends Controller
         //
         if ($request->ajax()) {
 
-            $data = PesertaDidikGudep::where('peserta_didik_gudeps.gudep_id', Auth::user()->id_gudep)
+            $data = PesertaDidikGudep::where('gudep_id', '=', Auth::user()->id_gudep)
                 ->latest()
                 ->get();
 
@@ -102,13 +102,17 @@ class PesertaDidikGudepController extends Controller
             'password'     => Hash::make($request->password),
             'role_id'     => $request->role_id
         ]);
+        // dd($pesertadidikgudeps);
+        dd($pesertadidikgudeps->getErrors());
 
         if ($pesertadidikgudeps) {
             //redirect dengan pesan sukses
             return redirect()->route('peserta-didik-gudeps.index')->with(['success' => 'Data Berhasil Disimpan!']);
         } else {
             //redirect dengan pesan error
+            dd($pesertadidikgudeps->getErrors());
             return redirect()->route('peserta-didik-gudeps.add')->with(['error' => 'Data Gagal Disimpan!']);
+            dd($pesertadidikgudeps->getErrors());
         }
     }
 

@@ -165,7 +165,7 @@
     <script src="{{ asset('assets/backend/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/backend/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
 
-    <script src="{{ asset('assets/backendvendor/js/menu.js') }}"></script>
+    <script src="{{ asset('assets/backend/vendor/js/menu.js') }}"></script>
     <!-- endbuild -->
 
     <!-- Vendors JS -->
