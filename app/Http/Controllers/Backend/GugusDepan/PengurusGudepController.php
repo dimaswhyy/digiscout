@@ -22,7 +22,7 @@ class PengurusGudepController extends Controller
         //
         if ($request->ajax()) {
 
-            $data = PengurusGudep::where('account_penguji_gudeps', '=', Auth::user()->id_gudep)->leftjoin('jabatans', 'pengurus_gudeps.position_id', '=', 'jabatans.id')->select('pengurus_gudeps.id', 'jabatans.position_name', 'pengurus_gudeps.*', 'pengurus_gudeps.created_at')->latest()->get();
+            $data = PengurusGudep::where('pengurus_gudeps.gudep_id', '=', Auth::user()->gudep_id)->leftjoin('jabatans', 'pengurus_gudeps.position_id', '=', 'jabatans.id')->select('pengurus_gudeps.id', 'jabatans.position_name', 'pengurus_gudeps.*', 'pengurus_gudeps.created_at')->latest()->get();
 
             return datatables::of($data)
                 ->addIndexColumn()

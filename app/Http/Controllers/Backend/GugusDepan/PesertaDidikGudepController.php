@@ -21,7 +21,7 @@ class PesertaDidikGudepController extends Controller
         //
         if ($request->ajax()) {
 
-            $data = PesertaDidikGudep::where('gudep_id', '=', Auth::user()->id_gudep)
+            $data = PesertaDidikGudep::where('peserta_didik_gudeps.gudep_id', '=', Auth::user()->gudep_id)
                 ->latest()
                 ->get();
 

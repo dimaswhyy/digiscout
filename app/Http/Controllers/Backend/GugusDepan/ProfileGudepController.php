@@ -21,7 +21,7 @@ class ProfileGudepController extends Controller
         //
         if ($request->ajax()) {
 
-            $data = Gudep::where('id', '=', Auth::user()->id_gudep)->latest()->get();
+            $data = Gudep::where('id', '=', Auth::user()->gudep_id)->latest()->get();
 
             return datatables::of($data)
                 ->addIndexColumn()

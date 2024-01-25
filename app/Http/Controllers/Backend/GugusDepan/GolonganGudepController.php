@@ -20,7 +20,7 @@ class GolonganGudepController extends Controller
         //
         if ($request->ajax()) {
 
-            $data = GolonganGudep::where('gudep_id', '=', Auth::user()->id_gudep)->leftjoin('golongans', 'golongan_gudeps.golongan_id', '=', 'golongans.id')->select('golongan_gudeps.id', 'golongans.group_name', 'golongan_gudeps.information', 'golongan_gudeps.created_at')->latest()->get();
+            $data = GolonganGudep::where('gudep_id', '=', Auth::user()->gudep_id)->leftjoin('golongans', 'golongan_gudeps.golongan_id', '=', 'golongans.id')->select('golongan_gudeps.id', 'golongans.group_name', 'golongan_gudeps.information', 'golongan_gudeps.created_at')->latest()->get();
 
             return datatables::of($data)
                 ->addIndexColumn()

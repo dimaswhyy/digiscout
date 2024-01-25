@@ -21,7 +21,7 @@ class PengujiGudepController extends Controller
         //
         if ($request->ajax()) {
 
-            $data = AccountPengujiGudep::where('account_penguji_gudeps.gudep_id', Auth::user()->id_gudep)
+            $data = AccountPengujiGudep::where('account_penguji_gudeps.gudep_id', Auth::user()->gudep_id)
                 ->leftJoin('pengurus_gudeps', 'account_penguji_gudeps.pengurus_id', '=', 'pengurus_gudeps.id')
                 ->select('account_penguji_gudeps.id', 'pengurus_gudeps.name', 'account_penguji_gudeps.email', 'account_penguji_gudeps.role_id', 'account_penguji_gudeps.created_at')
                 ->latest()
