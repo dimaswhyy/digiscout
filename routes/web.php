@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\Auth\SchoolRegisterController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\SuperAdmin\GudepController;
@@ -30,7 +30,9 @@ use App\Http\Controllers\Backend\Superadmin\TingkatanController;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
+
+Route::resource('/daftar/daftar-sekolah', SchoolRegisterController::class);
 
 Auth::routes();
 
