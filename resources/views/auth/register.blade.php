@@ -24,6 +24,7 @@
     <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
     <!-- Canonical SEO -->
     <link rel="canonical" href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/">
+    <link rel="canonical" href="https://themeselection.com/item/sneat-bootstrap-html-admin-template/">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/backend/img/favicon/logo-1.png') }}" />
@@ -36,20 +37,19 @@
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="{{ asset('assets/backend/vendor/fonts/boxicons.css') }}" />
 
-
-
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset('assets/backend/vendor/css/core.css') }}" class="template-customizer-core-css" />
     <link rel="stylesheet" href="{{ asset('assets/backend/vendor/css/theme-default.css') }}" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset('assets/backend/css/demo.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/backend/css/select2.min.css') }}">
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('assets/backend/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
 
-
-
     <!-- Page CSS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    
     <!-- Page -->
     <link rel="stylesheet" href="{{ asset('assets/backend/vendor/css/pages/page-auth.css') }}">
     <!-- Helpers -->
@@ -109,61 +109,13 @@
                         <form id="formAuthentication" class="mb-3" action="{{ route('register') }}" method="POST">
 
                             @csrf
-
+                            
                             <div class="form-group mb-3">
                                 <label for="gudep_id">Asal Sekolah <span style="color: red;">*</span></label>
-                                <select id="select2Basic" class="select2 form-select form-select-lg" data-allow-clear="true">
-                                    <option value="AK">Alaska</option>
-                                    <option value="HI">Hawaii</option>
-                                    <option value="CA">California</option>
-                                    <option value="NV">Nevada</option>
-                                    <option value="OR">Oregon</option>
-                                    <option value="WA">Washington</option>
-                                    <option value="AZ">Arizona</option>
-                                    <option value="CO">Colorado</option>
-                                    <option value="ID">Idaho</option>
-                                    <option value="MT">Montana</option>
-                                    <option value="NE">Nebraska</option>
-                                    <option value="NM">New Mexico</option>
-                                    <option value="ND">North Dakota</option>
-                                    <option value="UT">Utah</option>
-                                    <option value="WY">Wyoming</option>
-                                    <option value="AL">Alabama</option>
-                                    <option value="AR">Arkansas</option>
-                                    <option value="IL">Illinois</option>
-                                    <option value="IA">Iowa</option>
-                                    <option value="KS">Kansas</option>
-                                    <option value="KY">Kentucky</option>
-                                    <option value="LA">Louisiana</option>
-                                    <option value="MN">Minnesota</option>
-                                    <option value="MS">Mississippi</option>
-                                    <option value="MO">Missouri</option>
-                                    <option value="OK">Oklahoma</option>
-                                    <option value="SD">South Dakota</option>
-                                    <option value="TX">Texas</option>
-                                    <option value="TN">Tennessee</option>
-                                    <option value="WI">Wisconsin</option>
-                                    <option value="CT">Connecticut</option>
-                                    <option value="DE">Delaware</option>
-                                    <option value="FL">Florida</option>
-                                    <option value="GA">Georgia</option>
-                                    <option value="IN">Indiana</option>
-                                    <option value="ME">Maine</option>
-                                    <option value="MD">Maryland</option>
-                                    <option value="MA">Massachusetts</option>
-                                    <option value="MI">Michigan</option>
-                                    <option value="NH">New Hampshire</option>
-                                    <option value="NJ">New Jersey</option>
-                                    <option value="NY">New York</option>
-                                    <option value="NC">North Carolina</option>
-                                    <option value="OH">Ohio</option>
-                                    <option value="PA">Pennsylvania</option>
-                                    <option value="RI">Rhode Island</option>
-                                    <option value="SC">South Carolina</option>
-                                    <option value="VT">Vermont</option>
-                                    <option value="VA">Virginia</option>
-                                    <option value="WV">West Virginia</option>
-                                  </select>
+                                <select id="gudep_id" class="select2 form-select form-select-lg" >
+                                    <option>- Pilih Asal Sekolah</option>
+                                    
+                                </select>
                                 @error('gudep_id')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
@@ -172,7 +124,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="name" class="form-label">Nama <span style="color: red;">*</span></label>
+                                <label for="name" class="form-label">Nama <span
+                                        style="color: red;">*</span></label>
                                 <input type="text" class="form-control" id="name" name="name"
                                     placeholder="Masukkan Nama Sekolahmu" autofocus>
                                 @error('name')
@@ -261,8 +214,12 @@
     <script src="{{ asset('assets/backend/js/main.js') }}"></script>
 
     <!-- Page JS -->
-
-
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#gudep_id').select2();
+        });
+    </script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
