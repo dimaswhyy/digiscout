@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Gudep;
+use App\Models\PesertaDidikGudep;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -66,21 +67,47 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([ 
-            'id' => Str::uuid(),
-            'profil_user' => "dummy test",
-            'nta' => "dummy test",
-            'gender' => "dummy test",
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'role_id' => $data['role_id']
+        // return PesertaDidikGudep::create([ 
+        //     'id' => Str::uuid(),
+        //     'profil_user' => "dummy test",
+        //     'nta' => "dummy test",
+        //     'gender' => "dummy test",
+        //     'school_name' => $data['school_name'],
+        //     'name' => $data['name'],
+        //     'email' => $data['email'],
+        //     'password' => Hash::make($data['password']),
+        //     'role_id' => $data['role_id']
+        // ]);
+        // dd();
+
+        $registerPesertaDidik = PesertaDidikGudep::create([
+            'id'    => Str::uuid(),
+            'gudep_id'     => $data['gudep_id'],
+            'admin_gudep_id'     => "null",
+            'name'     => $data['name'],
+            'gender'     => "null",
+            'information'     => "Aktif",
+            'email'     => $data['email'],
+            'password'     => Hash::make($data['password']),
+            'role_id'     => "4"
         ]);
+        dd($registerPesertaDidik);
+        // dd($registerPesertaDidik->getErrors());
+
+        if ($registerPesertaDidik) {
+            //redirect dengan pesan sukses
+            return redirect()->route('register')->with(['success' => 'Data Berhasil Disimpan!']);
+        } else {
+            //redirect dengan pesan error
+            // dd($registerPesertaDidik->getErrors());
+            return redirect()->route('login')->with(['error' => 'Data Gagal Disimpan!']);
+            // dd($registerPesertaDidik->getErrors());
+        }
     }
 
-    public function index()
-    {
-        $getGudep = Gudep::all();
-        return view('auth.register', compact('getGudep'));
-    }
+    // public function index()
+    // {
+    //     $getGudep = Gudep::all();
+    //     return view('auth.register', compact('getGudep'));
+    // }
 }

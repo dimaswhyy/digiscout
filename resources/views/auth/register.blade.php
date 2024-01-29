@@ -115,7 +115,10 @@
                                 <label for="gudep_id">Asal Sekolah <span style="color: red;">*</span></label>
                                 <select id="gudep_id" class="select2 form-select form-select-lg">
                                     <option value="">- Pilih Asal Sekolah</option>
-                                    
+
+                                    <!-- {{-- @foreach ($data as $item) -->
+                                        <!-- <option value="{{ $item['id'] }}">{{ $item['school_name'] }}</option> -->
+                                    <!-- @endforeach --}} -->
                                 </select>
                                 @error('gudep_id')
                                     <div class="alert alert-danger mt-2">
@@ -214,13 +217,13 @@
     <script src="{{ asset('assets/backend/js/main.js') }}"></script>
 
     <!-- Page JS -->
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('assets/backend/js/select2.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             // Inisialisasi select2
             $('#gudep_id').select2({
                 ajax: {
-                    url: '/api-get-gudep',
+                    url: '/api/gudep',
                     dataType: 'json',
                     delay: 250,
                     processResults: function(data) {
@@ -233,7 +236,13 @@
                             })
                         };
                     },
-                    cache: true
+                    cache: true,
+                    // Tambahan: Fungsi untuk melakukan pencarian berdasarkan school_name
+                    data: function(params) {
+                        return {
+                            term: params.term, // term ini akan mengandung nilai pencarian dari user
+                        };
+                    },
                 },
                 placeholder: '- Pilih Asal Sekolah -',
                 minimumInputLength: 0

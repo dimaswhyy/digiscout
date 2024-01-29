@@ -9,10 +9,19 @@ use Illuminate\Http\Request;
 class APIGetGudepController extends Controller
 {
     //
-    public function getGudepOptions()
+    public function getGudepOptions(Request $request)
     {
-        $gudepOptions = Gudep::pluck('school_name', 'id')->toArray();
-        dd($gudepOptions);
+        $term = $request->input('term'); // Get the term parameter from the request
+
+        $query = Gudep::query();
+
+        // If a search term is provided, filter the results
+        if ($term) {
+            $query->where('school_name', 'like', '%' . $term . '%');
+        }
+
+        $gudepOptions = $query->get(['id', 'school_name']);
+        
         return response()->json($gudepOptions);
     }
 }
