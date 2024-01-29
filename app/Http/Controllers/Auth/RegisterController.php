@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Gudep;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -75,5 +76,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'role_id' => $data['role_id']
         ]);
+    }
+
+    public function index()
+    {
+        $getGudep = Gudep::all();
+        return view('auth.register', compact('getGudep'));
     }
 }

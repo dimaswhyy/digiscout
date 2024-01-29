@@ -46,7 +46,8 @@
     <link rel="stylesheet" href="{{ asset('assets/backend/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
 
     <!-- Page CSS -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     
@@ -109,11 +110,11 @@
                         <form id="formAuthentication" class="mb-3" action="{{ route('register') }}" method="POST">
 
                             @csrf
-                            
+
                             <div class="form-group mb-3">
                                 <label for="gudep_id">Asal Sekolah <span style="color: red;">*</span></label>
-                                <select id="gudep_id" class="select2 form-select form-select-lg" >
-                                    <option>- Pilih Asal Sekolah</option>
+                                <select id="gudep_id" class="select2 form-select form-select-lg">
+                                    <option value="">- Pilih Asal Sekolah</option>
                                     
                                 </select>
                                 @error('gudep_id')
@@ -124,10 +125,9 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="name" class="form-label">Nama <span
-                                        style="color: red;">*</span></label>
+                                <label for="name" class="form-label">Nama <span style="color: red;">*</span></label>
                                 <input type="text" class="form-control" id="name" name="name"
-                                    placeholder="Masukkan Nama Sekolahmu" autofocus>
+                                    placeholder="Masukkan Namamu" autofocus>
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -217,7 +217,27 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#gudep_id').select2();
+            // Inisialisasi select2
+            $('#gudep_id').select2({
+                ajax: {
+                    url: '/api-get-gudep',
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    text: item.school_name
+                                };
+                            })
+                        };
+                    },
+                    cache: true
+                },
+                placeholder: '- Pilih Asal Sekolah -',
+                minimumInputLength: 0
+            });
         });
     </script>
 
