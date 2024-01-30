@@ -113,7 +113,7 @@
 
                             <div class="form-group mb-3">
                                 <label for="gudep_id">Asal Sekolah <span style="color: red;">*</span></label>
-                                <select id="gudep_id" class="select2 form-select form-select-lg">
+                                <select id="gudep_id" class="select2 form-select form-select-lg" name="gudep_id">
                                     <option value="">- Pilih Asal Sekolah</option>
 
                                     <!-- {{-- @foreach ($data as $item) -->
@@ -138,12 +138,25 @@
                                 @enderror
                             </div>
 
+                            <div class="form-group mb-3">
+                                <label for="gender">Jenis Kelamin <span style="color: red;">*</span></label>
+                                <select id="gender" class="form-control" name="gender">
+                                    <option>- Pilih Jenis Kelamin -</option>
+                                    <option>Laki-laki</option>
+                                    <option>Perempuan</option>
+                                </select>
+                                @error('gender')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email <span
                                         style="color: red;">*</span></label>
                                 <input type="email" class="form-control" id="email" name="email"
-                                    placeholder="Masukkan Nomor Gugus Depan Putra" autofocus>
+                                    placeholder="Masukkan Emailmu" autofocus>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -165,11 +178,7 @@
 
                             <div class="mb-3 form-password-toggle">
                                 <div class="d-flex justify-content-between">
-                                    <label class="form-label" for="password">Password <span
-                                            style="color: red;">*</span></label>
-                                    {{-- <a href="auth-forgot-password-basic.html">
-                                    <small>Lupa Password?</small>
-                                </a> --}}
+                                    <label class="form-label" for="password">{{ __('Password') }}</label>
                                 </div>
                                 <div class="input-group input-group-merge">
                                     <input type="password" id="password" class="form-control" name="password"
@@ -181,6 +190,18 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                </div>
+                            </div>
+
+                            <div class="mb-3 form-password-toggle">
+                                <div class="d-flex justify-content-between">
+                                    <label class="form-label" for="password-confirm">{{ __('Confirm Password') }}</label>
+                                </div>
+                                <div class="input-group input-group-merge">
+                                    <input type="password" id="password-confirm" class="form-control" name="password_confirmation"
+                                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                        aria-describedby="password" />
+                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                 </div>
                             </div>
 

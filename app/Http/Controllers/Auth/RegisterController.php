@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class RegisterController extends Controller
@@ -53,9 +54,12 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'gudep_id' => ['required'],
             'name' => ['required', 'string', 'max:255'],
+            'gender' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone_number' => ['required'],
+            'password' => ['required', 'string', 'min:8', 'confirmed']
         ]);
     }
 
@@ -80,28 +84,44 @@ class RegisterController extends Controller
         // ]);
         // dd();
 
-        $registerPesertaDidik = PesertaDidikGudep::create([
-            'id'    => Str::uuid(),
-            'gudep_id'     => $data['gudep_id'],
-            'admin_gudep_id'     => "null",
-            'name'     => $data['name'],
-            'gender'     => "null",
-            'information'     => "Aktif",
-            'email'     => $data['email'],
-            'password'     => Hash::make($data['password']),
-            'role_id'     => "4"
+        $validator = Validator::make($data, [
+            'gudep_id'     => 'required',
+            'name'         => 'required',
+            'gender'       => 'required',
+            'phone_number' => 'required',
+            'email'        => 'required|email|unique:users,email',
+            'password'     => 'required|min:8|confirmed',
         ]);
-        dd($registerPesertaDidik);
-        // dd($registerPesertaDidik->getErrors());
 
+        if ($validator->fails()) {
+            return redirect('register')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // dd($data);
+
+        $registerPesertaDidik = PesertaDidikGudep::create([
+        
+      
+            'id'             => Str::uuid(),
+            'gudep_id'       => $data['gudep_id'],
+            'admin_gudep_id' => "Input by Personal Register",
+            'name'           => $data['name'],
+            'gender'         => $data['gender'],
+            'information'    => "Aktif",
+            'email'          => $data['email'],
+            'phone_number'   => $data['phone_number'],
+            'password'       => Hash::make($data['password']),      
+            'role_id'        => "4",
+                ]);
+ 
         if ($registerPesertaDidik) {
-            //redirect dengan pesan sukses
+            // Redirect with success message
             return redirect()->route('register')->with(['success' => 'Data Berhasil Disimpan!']);
         } else {
-            //redirect dengan pesan error
-            // dd($registerPesertaDidik->getErrors());
+            // Redirect with error message
             return redirect()->route('login')->with(['error' => 'Data Gagal Disimpan!']);
-            // dd($registerPesertaDidik->getErrors());
         }
     }
 
