@@ -74,7 +74,7 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="skor">Nilai <span style="color: red;">*</span></label>
+                            <label for="skor">Skor <span style="color: red;">*</span></label>
                             <input name="skor" class="form-control" id="skor" placeholder="1">
                             @error('skor')
                                 <div class="alert alert-danger mt-2">

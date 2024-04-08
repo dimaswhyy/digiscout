@@ -49,7 +49,6 @@ Route::middleware('auth:account_super_admin')->group(function () {
     route::resource('/tingkatans', TingkatanController::class);
     route::resource('/poinskus', PoinSKUController::class);
     route::resource('/jabatans', JabatanController::class);
-
 });
 
 Route::middleware('auth:account_admin_gudep')->group(function () {

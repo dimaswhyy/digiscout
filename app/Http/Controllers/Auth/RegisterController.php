@@ -121,7 +121,7 @@ class RegisterController extends Controller
             return redirect()->route('register')->with(['success' => 'Data Berhasil Disimpan!']);
         } else {
             // Redirect with error message
-            return redirect()->route('login')->with(['error' => 'Data Gagal Disimpan!']);
+            return redirect()->route('/')->with(['error' => 'Data Gagal Disimpan!']);
         }
     }
 
