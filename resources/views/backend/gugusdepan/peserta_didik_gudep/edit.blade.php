@@ -14,7 +14,7 @@
                         @csrf
                         @method('PUT')
 
-                        <input name="gudep_id" class="form-control" id="gudep_id" value="{{ auth()->user()->id_gudep }}" hidden>
+                        <input name="gudep_id" class="form-control" id="gudep_id" value="{{ auth()->user()->gudep_id }}" hidden>
                         <input name="admin_gudep_id" class="form-control" id="admin_gudep_id" value="{{ auth()->user()->id }}" hidden>
                         <input name="role_id" class="form-control" id="role_id" value="4" hidden>
 
@@ -96,7 +96,7 @@
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    </span>
+                                    </span> 
                                 @enderror
                             </div>
                         </div>

@@ -16,7 +16,7 @@
                 <div class="d-flex align-items-end row">
                     <div class="col-sm-7">
                         <div class="card-body">
-                            <h5 class="card-title text-primary">Yeayy Selamat datang !! Kak Dimas 🎉</h5>
+                            <h5 class="card-title text-primary">Yeayy Selamat datang !! Kak {{ auth()->user()->name }} 🎉</h5>
                             <p class="mb-4">
                                 Mulai harimu dengan <span class="fw-bold">Semangat Baru !</span>
                                 <br>"<span class="fst-italic">Langkah tak ternilai dalam pendidikan karakter adalah
@@ -24,8 +24,13 @@
                                     tanggung jawab kepada para anggota kepanduan."</span> <span class="fw-bold">~Baden
                                     Powell</span>
                             </p>
-                            <a href="javascript:;" class="btn btn-sm btn-outline-primary rounded-full">Mulai Tantangan
-                                Baru</a>
+                            @if (auth()->user()->role_id == 4)
+                                <a href="javascript:;" class="btn btn-sm btn-outline-primary rounded-full">
+                                    Mulai Tantangan Baru
+                                </a>
+                            @else
+                                
+                            @endif
                         </div>
                     </div>
                 </div>
