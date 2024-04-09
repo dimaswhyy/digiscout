@@ -37,7 +37,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 
-    {{-- DataTables --}}    
+    {{-- DataTables --}}
     <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 
@@ -121,6 +121,37 @@
       .brand-padding-cust {
       padding-top-cust: 20px;
       }
+
+      /* Time Line */
+        .timeline {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .timeline-marker {
+            width: 20px;
+            height: 20px;
+            background-color: #007bff; /* or any color you prefer */
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-title {
+            margin-bottom: 5px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
 
     </style>
 
