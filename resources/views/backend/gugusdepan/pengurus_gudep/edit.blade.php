@@ -12,10 +12,11 @@
                     <form class="forms-sample" action="{{ route('pengurus-gudeps.update', $pengurusgudeps->id) }}" method="POST" enctype="multipart/form-data">
 
                         @csrf
-                        @method('PUT')
+                        @method('PUT') 
 
                         <input name="gudep_id" class="form-control" id="gudep_id" value="{{ auth()->user()->gudep_id }}" hidden>
                         <input name="admin_gudep_id" class="form-control" id="admin_gudep_id" value="{{ auth()->user()->id }}" hidden>
+                        
 
                         <div class="form-group mb-3">
                             <label for="name">Nama Lengkap <span style="color: red;">*</span></label>
