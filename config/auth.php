@@ -54,6 +54,11 @@ return [
         'account_admin_gudep' => [
             'driver' => 'session',
             'provider' => 'account_admin_gudeps',
+        ],
+
+        'account_penguji_gudep' => [
+            'driver' => 'session',
+            'provider' => 'account_penguji_gudeps',
         ]
     ],
 
@@ -88,6 +93,11 @@ return [
         'account_admin_gudeps' => [
             'driver' => 'eloquent',
             'model' => App\Models\AccountAdminGudep::class,
+        ],
+
+        'account_penguji_gudeps' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\AccountPengujiGudep::class,
         ],
 
         // 'users' => [

@@ -152,7 +152,7 @@ class PengujiGudepController extends Controller
             'role_id'     => $request->role_id,
             'pengurus_id'     => $request->pengurus_id,
             'email'     => $request->email,
-            'password'     => $request->password
+            'password'     => Hash::make($request->password)
         ]);
 
         if($pengujigudeps){

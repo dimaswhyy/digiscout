@@ -37,7 +37,7 @@ Route::resource('/daftar/daftar-sekolah', SchoolRegisterController::class);
 
 Auth::routes();
 
-Route::middleware('auth:user,account_super_admin,account_admin_gudep')->group(function () {
+Route::middleware('auth:user,account_super_admin,account_admin_gudep,account_penguji_gudep')->group(function () {
     route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 });
 
