@@ -31,67 +31,87 @@
                                 </a>
                             @else
                             @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Card -->
-        {{-- Activity Timeline --}}
-        <div class="col-lg-12 order-2 order-md-3 mb-4">
-            <div class="card">
-                <div class="card-header">
-                    Activity Timeline
-                </div>
-                <div class="card-body">
-                    <!-- Timeline -->
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
-                                <h6 class="timeline-title">Event Title</h6>
-                                <p>Event description goes here.</p>
-                                <small class="text-muted">3 days ago</small>
-                                <div class="divider text-start">
-                                    <div class="divider-text">
-                                      <i class="bx bx-sun"></i>
-                                    </div>
+                            <div class="divider text-start">
+                                <div class="divider-text">
+                                    <i class="bx bx-sun"></i>
                                 </div>
                             </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
-                                <h6 class="timeline-title">Another Event Title</h6>
-                                <p>Another event description goes here.</p>
-                                <small class="text-muted">5 days ago</small>
-                                <div class="divider text-start">
-                                    <div class="divider-text">
-                                      <i class="bx bx-sun"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
-                                <h6 class="timeline-title">Yet Another Event Title</h6>
-                                <p>Yet another event description goes here.</p>
-                                <small class="text-muted">1 week ago</small>
-                                <div class="divider text-start">
-                                    <div class="divider-text">
-                                      <i class="bx bx-sun"></i>
+                            <div class="col-lg-6 col-md-3 col-6 mb-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-title d-flex align-items-start justify-content-between">
+                                            <div class="avatar flex-shrink-0">
+                                                <img src="{{ asset('assets/backend/img/icons/unicons/cc-group.png') }}" lt="Member Card" class="rounded">
+                                            </div>
+                                        </div>
+                                        <span class="d-block">Anggota Keseluruhan</span>
+                                        <h4 class="card-title mb-1 text-primary">100</h4>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- End Timeline -->
                 </div>
             </div>
         </div>
-        {{-- End Activity Timeline --}}
-        {{-- Tabel Sertifikat Kegiatan --}}
-        {{--  --}}
+    </div>
+    </div>
+    <!-- End Card -->
+    {{-- Activity Timeline --}}
+    <div class="col-lg-12 order-2 order-md-3 mb-4">
+        <div class="card">
+            <div class="card-header">
+                Activity Timeline
+            </div>
+            <div class="card-body">
+                <!-- Timeline -->
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h6 class="timeline-title">Event Title</h6>
+                            <p>Event description goes here.</p>
+                            <small class="text-muted">3 days ago</small>
+                            <div class="divider text-start">
+                                <div class="divider-text">
+                                    <i class="bx bx-sun"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h6 class="timeline-title">Another Event Title</h6>
+                            <p>Another event description goes here.</p>
+                            <small class="text-muted">5 days ago</small>
+                            <div class="divider text-start">
+                                <div class="divider-text">
+                                    <i class="bx bx-sun"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h6 class="timeline-title">Yet Another Event Title</h6>
+                            <p>Yet another event description goes here.</p>
+                            <small class="text-muted">1 week ago</small>
+                            <div class="divider text-start">
+                                <div class="divider-text">
+                                    <i class="bx bx-sun"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Timeline -->
+            </div>
+        </div>
+    </div>
+    {{-- End Activity Timeline --}}
+    {{-- Tabel Sertifikat Kegiatan --}}
+    {{--  --}}
     </div>
 @endsection
