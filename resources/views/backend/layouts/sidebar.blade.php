@@ -172,5 +172,31 @@
         </li>     --}}
             @endif
         @endif
+        
+        @if (Str::length(Auth::guard('account_penguji_gudep')->user()) > 0)
+            @if (Auth::guard('account_penguji_gudep')->user()->role_id == 3)
+                <!-- SuperAdmin -->
+                <li class="menu-header small text-uppercase"><span class="menu-header-text">Penguji</span></li>
+                <!-- Forms -->
+                <li class="menu-item {{ Request::is('pemberitahuans') ? 'active' : '' }}">
+                    <a href="{{ route('pemberitahuans.index') }}" class="menu-link">
+                        <i class="menu-icon tf-icons bx bxs-message-dots"></i>
+                        <div data-i18n="Basic">Buat Info</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="menu-icon tf-icons bx bxs-badge-check"></i>
+                        <div data-i18n="Basic">Uji SKU</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-badge-check"></i>
+                        <div data-i18n="Basic">Uji SKK <i>(Soon)</i></div>
+                    </a>
+                </li>
+            @endif
+        @endif
     </ul>
 </aside>

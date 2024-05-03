@@ -52,6 +52,11 @@
                                 <h6 class="timeline-title">Event Title</h6>
                                 <p>Event description goes here.</p>
                                 <small class="text-muted">3 days ago</small>
+                                <div class="divider text-start">
+                                    <div class="divider-text">
+                                      <i class="bx bx-sun"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="timeline-item">
@@ -60,6 +65,11 @@
                                 <h6 class="timeline-title">Another Event Title</h6>
                                 <p>Another event description goes here.</p>
                                 <small class="text-muted">5 days ago</small>
+                                <div class="divider text-start">
+                                    <div class="divider-text">
+                                      <i class="bx bx-sun"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="timeline-item">
@@ -68,6 +78,11 @@
                                 <h6 class="timeline-title">Yet Another Event Title</h6>
                                 <p>Yet another event description goes here.</p>
                                 <small class="text-muted">1 week ago</small>
+                                <div class="divider text-start">
+                                    <div class="divider-text">
+                                      <i class="bx bx-sun"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

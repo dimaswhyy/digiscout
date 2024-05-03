@@ -53,6 +53,7 @@
                                             <span>Lead of DigiScout</span>
                                         @elseif(auth()->user()->role_id == 2)
                                             <span>Admin Gugus Depan</span>
+                                            {{-- Nanti Tolong Tambahkan untuk menampilkan nama Gugus Depannya --}}
                                         @elseif(auth()->user()->role_id == 3)
                                             <span>Pembina</span>
                                         @else

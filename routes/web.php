@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\GugusDepan\PengurusGudepController;
 use App\Http\Controllers\Backend\GugusDepan\PesertaDidikGudepController;
 use App\Http\Controllers\Backend\SuperAdmin\JabatanController;
 use App\Http\Controllers\Backend\GugusDepan\ProfileGudepController;
+use App\Http\Controllers\Backend\PengujiGudep\PemberitahuanController;
 use App\Http\Controllers\Backend\SuperAdmin\AdminGudepController;
 use App\Http\Controllers\Backend\SuperAdmin\GolonganController;
 use App\Http\Controllers\Backend\Superadmin\PoinSKUController;
@@ -58,6 +59,11 @@ Route::middleware('auth:account_admin_gudep')->group(function () {
     Route::resource('/pengurus-gudeps', PengurusGudepController::class);
     Route::resource('/penguji-gudeps', PengujiGudepController::class);
     Route::resource('/peserta-didik-gudeps', PesertaDidikGudepController::class);
+});
+
+Route::middleware('auth:account_penguji_gudep')->group(function () {
+    // Gugus Depan
+    Route::resource('/pemberitahuans', PemberitahuanController::class);
 });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
