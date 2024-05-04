@@ -10,12 +10,11 @@
         </div>
         <div class="card-datatable table">
             <div class="card-datatable table-responsive text-nowrap">
-                <table class="dt-scrollableTable table data-table-pengurus-gudep">
+                <table class="dt-scrollableTable table data-table-pemberitahuan-gudep">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Judul</th>
-                            <th>Deskripsi</th>
                             <th>Tanggal</th>
                             <th>Waktu</th>
                             <th>Aksi</th>

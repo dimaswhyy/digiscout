@@ -49,12 +49,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <a href="{{ route('pemberitahuans.index') }}" class="btn btn-sm btn-outline-primary rounded-full">
+                                Buat Pemberitahuan
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <!-- End Card -->
     {{-- Activity Timeline --}}
