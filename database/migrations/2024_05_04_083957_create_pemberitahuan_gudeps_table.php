@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('pemberitahuan_gudeps', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('gudep_id');
-            $table->string('admin_gudep_id');
             $table->string('penguji_gudep_id');
             $table->string('title');
             $table->longText('desc');

@@ -23,7 +23,6 @@ class PemberitahuanGudep extends Model
         'date',
         'time',
         'gudep_id',
-        'admin_gudep_id',
         'penguji_gudep_id'
     ];
 }

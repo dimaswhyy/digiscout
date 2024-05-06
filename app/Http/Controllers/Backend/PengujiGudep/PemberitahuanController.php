@@ -67,6 +67,7 @@ class PemberitahuanController extends Controller
     public function create()
     {
         //
+        return view('backend.pengujigudep.pemberitahuan.add'); 
     }
 
     /**
