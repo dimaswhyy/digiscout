@@ -136,7 +136,7 @@
         .timeline-marker {
             width: 20px;
             height: 20px;
-            background-color: #007bff; /* or any color you prefer */
+            background-color: #696CFF; /* or any color you prefer */
             border-radius: 50%;
             margin-right: 10px;
         }

@@ -76,6 +76,32 @@ class PemberitahuanController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'gudep_id'     => 'required',
+            'penguji_gudep_id'     => 'required',
+            'title'     => 'required',
+            'desc'     => 'required',
+            'date'     => 'required',
+            'time'     => 'required',
+        ]);
+
+        $pemberitahuans = PemberitahuanGudep::create([
+            'id'    => Str::uuid(),
+            'gudep_id'     => $request->gudep_id,
+            'penguji_gudep_id'     => $request->penguji_gudep_id,
+            'title'     => $request->title,
+            'desc'     => $request->desc,
+            'date'     => $request->date,
+            'time'     => $request->time
+        ]);
+
+        if ($pemberitahuans) {
+            //redirect dengan pesan sukses
+            return redirect()->route('pemberitahuans.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        } else {
+            //redirect dengan pesan error
+            return redirect()->route('pemberitahuans.add')->with(['error' => 'Data Gagal Disimpan!']);
+        }
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('backend.master')
 @section('content')
+    <!-- Card -->
     <div class="row">
-        <!-- Card -->
         <div class="col-lg-4 mb-4 order-0">
             <!-- Move the user image card here -->
             <div class="card ">
@@ -41,7 +41,8 @@
                                     <div class="card-body">
                                         <div class="card-title d-flex align-items-start justify-content-between">
                                             <div class="avatar flex-shrink-0">
-                                                <img src="{{ asset('assets/backend/img/icons/unicons/cc-group.png') }}" lt="Member Card" class="rounded">
+                                                <img src="{{ asset('assets/backend/img/icons/unicons/cc-group.png') }}"
+                                                    lt="Member Card" class="rounded">
                                             </div>
                                         </div>
                                         <span class="d-block">Anggota Keseluruhan</span>
@@ -49,7 +50,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ route('pemberitahuans.index') }}" class="btn btn-sm btn-outline-primary rounded-full">
+                            <a href="{{ route('pemberitahuans.index') }}"
+                                class="btn btn-sm btn-outline-primary rounded-full">
                                 Buat Pemberitahuan
                             </a>
                         </div>
@@ -59,54 +61,40 @@
         </div>
     </div>
     <!-- End Card -->
+
     {{-- Activity Timeline --}}
     <div class="col-lg-12 order-2 order-md-3 mb-4">
         <div class="card">
             <div class="card-header">
-                Activity Timeline
+                <h5 class="card-title text-primary">Timeline Activity
+                </h5>
             </div>
             <div class="card-body">
                 <!-- Timeline -->
                 <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h6 class="timeline-title">Event Title</h6>
-                            <p>Event description goes here.</p>
-                            <small class="text-muted">3 days ago</small>
-                            <div class="divider text-start">
-                                <div class="divider-text">
-                                    <i class="bx bx-sun"></i>
+                    @foreach ($timelineData as $data)
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h6 class="timeline-title">{{ $data->title }}</h6>
+                                <p>{{ $data->desc }}</p>
+                                <span>
+                                    <p><h7>
+                                        <i class='bx bx-calendar'></i> {{ $data->date }}
+                                        <i class='bx bx-time'></i> {{ $data->date }}
+                                    </h7></p>
+                                </span>
+                                <p>
+                                    <small class="text-muted">{{ $data->created_at->diffForHumans() }}</small>
+                                </p>
+                                <div class="divider text-start">
+                                    <div class="divider-text">
+                                        <i class="bx bx-sun"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h6 class="timeline-title">Another Event Title</h6>
-                            <p>Another event description goes here.</p>
-                            <small class="text-muted">5 days ago</small>
-                            <div class="divider text-start">
-                                <div class="divider-text">
-                                    <i class="bx bx-sun"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h6 class="timeline-title">Yet Another Event Title</h6>
-                            <p>Yet another event description goes here.</p>
-                            <small class="text-muted">1 week ago</small>
-                            <div class="divider text-start">
-                                <div class="divider-text">
-                                    <i class="bx bx-sun"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <!-- End Timeline -->
             </div>

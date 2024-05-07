@@ -17,9 +17,8 @@ return new class extends Migration
             $table->string('penguji_gudep_id');
             $table->string('title');
             $table->longText('desc');
-            $table->date('date');
-            $table->time('time');
-            $table->rememberToken();
+            $table->string('date');
+            $table->string('time');
             $table->timestamps();
         });
     }

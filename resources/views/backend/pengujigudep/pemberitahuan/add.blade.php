@@ -14,9 +14,9 @@
 
                         @csrf
 
-                        <input name="gudep_id" class="form-control" id="gudep_id" value="{{ auth()->user()->id_gudep }}"
+                        <input name="gudep_id" class="form-control" id="gudep_id" value="{{ auth()->user()->gudep_id }}"
                             hidden>
-                        <input name="admin_gudep_id" class="form-control" id="penguji_gudep_id"
+                        <input name="penguji_gudep_id" class="form-control" id="penguji_gudep_id"
                             value="{{ auth()->user()->id }}" hidden>
 
                         <div class="form-group mb-3">
@@ -41,16 +41,26 @@
 
                         <div class="form-group mb-3">
                             <label for="date">Tanggal <span style="color: red;">*</span></label>
-                            <input class="form-control" type="date" value="2021-06-18" id="html5-date-input" />
+                            <input name="date" class="form-control" type="date" value="2021-06-18" id="date" />
+                            @error('date')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="time">Pukul <span style="color: red;">*</span></label>
-                            <input class="form-control" type="time" value="12:30:00" id="html5-time-input" />
+                            <input name="time" class="form-control" type="time" value="12:30:00" id="time" />
+                            @error('desc')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <button type="submit" class="btn btn-primary mr-2">Simpan Sekarang !</button>
-                        <a href="{{ route('penguji-gudeps.index') }}" class="btn btn-light">Nanti Aja</a>
+                        <a href="{{ route('pemberitahuans.index') }}" class="btn btn-light">Nanti Aja</a>
                     </form>
                 </div>
             </div>
