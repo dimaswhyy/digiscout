@@ -184,8 +184,8 @@
                         <div data-i18n="Basic">Buat Info</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="#" class="menu-link">
+                <li class="menu-item {{ Request::is('uji-skus') ? 'active' : '' }}">
+                    <a href="{{ route('uji-skus.index') }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bxs-badge-check"></i>
                         <div data-i18n="Basic">Uji SKU</div>
                     </a>

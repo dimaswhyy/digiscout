@@ -782,6 +782,46 @@
                 table.draw();
             });
 
+            // Datatable Penguji Uji SKU
+            var table = $('.data-table-penguji-uji-sku').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "{{ route('uji-skus.index') }}",
+                    data: function(d) {
+                        d.name = $('.searchName').val(),
+                            d.search = $('input[type="search"]').val()
+                    }
+                },
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'sku',
+                        name: 'sku'
+                    },
+                    {
+                        data: 'poin',
+                        name: 'poin'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    },
+                ]
+            });
+
+            $(".searchName").keyup(function() {
+                table.draw();
+            });
+
         });
     </script>
     {{-- End Script List Data Table --}}

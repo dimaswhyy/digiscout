@@ -14,7 +14,7 @@
         <div class="col-lg-8 order-2 order-md-3 mb-4">
             <div class="card">
                 <div class="d-flex align-items-end row">
-                    <div class="col-sm-7">
+                    <div class="col-sm-12">
                         <div class="card-body">
                             <h5 class="card-title text-primary">Yeayy Selamat datang !! Kak {{ auth()->user()->name }} 🎉
                             </h5>
@@ -25,35 +25,62 @@
                                     tanggung jawab kepada para anggota kepanduan."</span> <span class="fw-bold">~Baden
                                     Powell</span>
                             </p>
+
+                            {{-- Tambahan Dashboard Peserta DIdik --}}
                             @if (auth()->user()->role_id == 4)
                                 <a href="javascript:;" class="btn btn-sm btn-outline-primary rounded-full">
                                     Mulai Tantangan Baru
                                 </a>
-                            @else
-                            @endif
-                            <div class="divider text-start">
-                                <div class="divider-text">
-                                    <i class="bx bx-sun"></i>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-3 col-6 mb-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="card-title d-flex align-items-start justify-content-between">
-                                            <div class="avatar flex-shrink-0">
-                                                <img src="{{ asset('assets/backend/img/icons/unicons/cc-group.png') }}"
-                                                    lt="Member Card" class="rounded">
-                                            </div>
-                                        </div>
-                                        <span class="d-block">Anggota Keseluruhan</span>
-                                        <h4 class="card-title mb-1 text-primary">100</h4>
+                                <div class="divider text-start">
+                                    <div class="divider-text">
+                                        <i class="bx bx-sun"></i>
                                     </div>
                                 </div>
-                            </div>
-                            <a href="{{ route('pemberitahuans.index') }}"
-                                class="btn btn-sm btn-outline-primary rounded-full">
-                                Buat Pemberitahuan
-                            </a>
+                                <div class="col-lg-4 col-md-3 col-4 mb-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card-title d-flex align-items-start justify-content-between">
+                                                <div class="avatar flex-shrink-0">
+                                                    <img src="{{ asset('assets/backend/img/icons/unicons/cc-group.png') }}"
+                                                        lt="Member Card" class="rounded">
+                                                </div>
+                                            </div>
+                                            <span class="d-block">Penggalang Ramu</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                            @endif
+                            {{-- End Tambahan Dashboard Peserta DIdik --}}
+
+                            {{-- Tambahan Dashboard Penguji --}}
+                            @if (auth()->user()->role_id == 3)
+                                <div class="divider text-start">
+                                    <div class="divider-text">
+                                        <i class="bx bx-sun"></i>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card-title d-flex align-items-start justify-content-between">
+                                                <div class="avatar flex-shrink-0">
+                                                    <img src="{{ asset('assets/backend/img/icons/unicons/cc-group.png') }}"
+                                                        lt="Member Card" class="rounded">
+                                                </div>
+                                            </div>
+                                            <span class="d-block">Anggota Keseluruhan</span>
+                                            <h4 class="card-title mb-1 text-primary">100</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="{{ route('pemberitahuans.index') }}"
+                                    class="btn btn-sm btn-outline-primary rounded-full">
+                                    Buat Pemberitahuan
+                                </a>
+                            @else
+                            @endif
+                            {{-- End Tambahan Dashboard Penguji --}}
                         </div>
                     </div>
                 </div>
@@ -79,10 +106,12 @@
                                 <h6 class="timeline-title">{{ $data->title }}</h6>
                                 <p>{{ $data->desc }}</p>
                                 <span>
-                                    <p><h7>
-                                        <i class='bx bx-calendar'></i> {{ $data->date }}
-                                        <i class='bx bx-time'></i> {{ $data->date }}
-                                    </h7></p>
+                                    <p>
+                                        <h7>
+                                            <i class='bx bx-calendar'></i> {{ $data->date }}
+                                            <i class='bx bx-time'></i> {{ $data->date }}
+                                        </h7>
+                                    </p>
                                 </span>
                                 <p>
                                     <small class="text-muted">{{ $data->created_at->diffForHumans() }}</small>

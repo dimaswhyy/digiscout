@@ -48,7 +48,8 @@ class PemberitahuanController extends Controller
                     $dropBtn = '<div class="dropdown">
                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                         <div class="dropdown-menu">
-                          <a class="dropdown-item" href=' . route("golongan-gudeps.edit", $row->id) . '><i class="bx bx-edit-alt me-1"></i> Ubah</a>
+                          <a class="dropdown-item" href=' . route("pemberitahuans.edit", $row->id) . '><i class="bx bx-edit-alt me-1"></i> Ubah</a>
+                          <form action="' . route('pemberitahuans.destroy', $row->id) . '" method="POST">' . csrf_field() . method_field("DELETE") . '<button type="submit" class="btn btn-light" onclick="return confirm(\'Apakah anda yakin ingin menghapus data ini ?\')"><i class="bx bx-trash me-1"></i> Hapus</button></form>
                         </div>
                         </div>';
                     $btn = $dropBtn;
@@ -118,6 +119,8 @@ class PemberitahuanController extends Controller
     public function edit(string $id)
     {
         //
+        $pemberitahuans = PemberitahuanGudep::find($id);
+        return view('backend.pengujigudep.pemberitahuan.edit', compact('pemberitahuans'));
     }
 
     /**
@@ -126,6 +129,33 @@ class PemberitahuanController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $pemberitahuans = PemberitahuanGudep::findorfail($id);
+
+        $this->validate($request, [
+            'gudep_id'     => 'required',
+            'penguji_gudep_id'     => 'required',
+            'title'     => 'required',
+            'desc'     => 'required',
+            'date'     => 'required',
+            'time'     => 'required'
+        ]);
+
+        $pemberitahuans->update([
+            'gudep_id'     => $request->gudep_id,
+            'penguji_gudep_id'     => $request->penguji_gudep_id,
+            'title'     => $request->title,
+            'desc'     => $request->desc,
+            'date'     => $request->date,
+            'time'     => $request->time
+        ]);
+
+        if($pemberitahuans){
+            //redirect dengan pesan sukses
+            return redirect()->route('pemberitahuans.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        }else{
+            //redirect dengan pesan error
+            return redirect()->route('pemberitahuans.edit')->with(['error' => 'Data Gagal Disimpan!']);
+        }
     }
 
     /**
@@ -134,5 +164,15 @@ class PemberitahuanController extends Controller
     public function destroy(string $id)
     {
         //
+        $pemberitahuans = PemberitahuanGudep::findorfail($id);
+        $pemberitahuans->delete();
+        
+        if($pemberitahuans){
+            //redirect dengan pesan sukses
+            return redirect()->route('pemberitahuans.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        }else{
+            //redirect dengan pesan error
+            return redirect()->route('pemberitahuans.edit')->with(['error' => 'Data Gagal Disimpan!']);
+        }
     }
 }

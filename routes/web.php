@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\GugusDepan\PesertaDidikGudepController;
 use App\Http\Controllers\Backend\SuperAdmin\JabatanController;
 use App\Http\Controllers\Backend\GugusDepan\ProfileGudepController;
 use App\Http\Controllers\Backend\PengujiGudep\PemberitahuanController;
+use App\Http\Controllers\Backend\PengujiGudep\UjiSKUController;
 use App\Http\Controllers\Backend\SuperAdmin\AdminGudepController;
 use App\Http\Controllers\Backend\SuperAdmin\GolonganController;
 use App\Http\Controllers\Backend\Superadmin\PoinSKUController;
@@ -38,7 +39,7 @@ Route::resource('/daftar/daftar-sekolah', SchoolRegisterController::class);
 
 Auth::routes();
 
-Route::middleware('auth:user,account_super_admin,account_admin_gudep,account_penguji_gudep')->group(function () {
+Route::middleware('auth:user,account_super_admin,account_admin_gudep,account_penguji_gudep,peserta_didik_gudep')->group(function () {
     route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 });
 
@@ -64,6 +65,8 @@ Route::middleware('auth:account_admin_gudep')->group(function () {
 Route::middleware('auth:account_penguji_gudep')->group(function () {
     // Gugus Depan
     Route::resource('/pemberitahuans', PemberitahuanController::class);
+    Route::resource('/uji-skus', UjiSKUController::class);
+
 });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

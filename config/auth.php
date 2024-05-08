@@ -59,6 +59,11 @@ return [
         'account_penguji_gudep' => [
             'driver' => 'session',
             'provider' => 'account_penguji_gudeps',
+        ],
+
+        'peserta_didik_gudep' => [
+            'driver' => 'session',
+            'provider' => 'peserta_didik_gudeps',
         ]
     ],
 
@@ -98,6 +103,11 @@ return [
         'account_penguji_gudeps' => [
             'driver' => 'eloquent',
             'model' => App\Models\AccountPengujiGudep::class,
+        ],
+
+        'peserta_didik_gudeps' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\PesertaDidikGudep::class,
         ],
 
         // 'users' => [
